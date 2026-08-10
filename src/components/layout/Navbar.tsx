@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Menu, X, ExternalLink, ArrowRight } from 'lucide-react';
+import { Search, Menu, X, ExternalLink, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { GithubIcon } from '../ui/Icons';
 
 interface NavbarProps {
@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
 
   const navLinks = [
     { label: 'Ecosystem', path: '/#ecosystem' },
-    { label: 'Products', path: '/products' },
+    { label: 'Products', path: '/products', count: '10' },
     { label: 'Open Source', path: '/opensource' },
     { label: 'Community', path: '/community' },
     { label: 'Status', path: '/status', hasPulse: true },
@@ -30,32 +30,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-void/95 backdrop-blur-xl border-b border-border shadow-2xl py-3'
-          : 'bg-void/85 backdrop-blur-xl border-b border-white/[0.08] py-3.5'
-      }`}
-    >
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
-        
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
+      <div
+        className={`w-[90%] max-w-[1280px] h-[62px] rounded-full transition-all duration-300 pointer-events-auto flex items-center justify-between px-5 sm:px-6 ${
+          isScrolled
+            ? 'bg-carbon/80 backdrop-blur-2xl border border-white/15 shadow-2xl shadow-black/80'
+            : 'bg-carbon/70 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/50'
+        }`}
+      >
         {/* Brand Logo & Version Tag */}
         <Link to="/" className="flex items-center space-x-3 group cursor-pointer">
-          <div className="w-8 h-8 rounded-lg bg-carbon border border-border flex items-center justify-center font-display font-bold text-white group-hover:border-ember group-hover:shadow-lg group-hover:shadow-ember/20 transition-all">
-            <span className="text-ember font-mono text-base font-bold">Z</span>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-ember to-indigo flex items-center justify-center font-display font-bold text-black shadow-lg shadow-ember/25 transition-all group-hover:scale-105">
+            <span className="font-mono text-base font-black">Z</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-display font-bold text-base tracking-tight text-white group-hover:text-ember transition-colors">
               ZENUXS
             </span>
-            <span className="hidden sm:inline-block font-mono text-[9px] uppercase tracking-widest text-steel bg-carbon border border-border/80 px-1.5 py-0.5 rounded">
+            <span className="hidden sm:inline-block font-mono text-[9px] uppercase tracking-widest text-ember bg-ember/10 border border-ember/30 px-1.5 py-0.5 rounded font-bold">
               v2.4
             </span>
           </div>
         </Link>
 
         {/* Center Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1 font-mono text-xs text-fog bg-carbon/80 backdrop-blur-lg border border-border/80 rounded-full px-3 py-1 shadow-inner">
+        <nav className="hidden md:flex items-center space-x-1 font-mono text-xs text-fog bg-void/50 backdrop-blur-md border border-border/80 rounded-full px-2 py-1 shadow-inner">
           {navLinks.map((link) => {
             const isActive =
               link.path === '/#ecosystem'
@@ -79,6 +78,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                   </span>
                 )}
                 <span>{link.label}</span>
+                {link.count && (
+                  <span className="bg-indigo/20 text-indigo border border-indigo/40 text-[9px] px-1.5 py-0.2 rounded-full font-bold">
+                    {link.count}
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -90,12 +94,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
           {onOpenSearch && (
             <button
               onClick={onOpenSearch}
-              className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-carbon hover:bg-iron border border-border/80 text-ash hover:text-white font-mono text-xs transition-all cursor-pointer group"
+              className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-void/60 hover:bg-iron border border-border/80 text-ash hover:text-white font-mono text-xs transition-all cursor-pointer group"
               title="Search products & docs (Cmd+K)"
             >
               <Search className="w-3.5 h-3.5 text-steel group-hover:text-ember transition-colors" />
               <span className="text-steel group-hover:text-fog font-sans text-xs">Search...</span>
-              <kbd className="text-[10px] bg-void px-1.5 py-0.5 rounded border border-border text-steel font-mono">
+              <kbd className="text-[10px] bg-carbon px-1.5 py-0.5 rounded border border-border text-steel font-mono">
                 ⌘K
               </kbd>
             </button>
@@ -106,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             href="https://github.com/zenuxs-dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-carbon hover:bg-iron border border-border/80 text-fog hover:text-white transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-void/60 hover:bg-iron border border-border/80 text-fog hover:text-white transition-colors cursor-pointer"
             title="GitHub Organization"
           >
             <GithubIcon className="w-4 h-4" />
@@ -117,9 +121,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             href="https://zenuxs.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3.5 py-1.5 rounded-lg bg-ember hover:bg-ember-hover text-white font-mono text-xs font-semibold shadow-lg shadow-ember/20 border border-ember/40 transition-all flex items-center gap-1.5 cursor-pointer group"
+            className="px-4 py-1.5 rounded-full bg-ember hover:bg-ember-hover text-white font-mono text-xs font-semibold shadow-lg shadow-ember/30 border border-ember/40 transition-all flex items-center gap-1.5 cursor-pointer group"
           >
-            <span>Accounts</span>
+            <span>Accounts SSO</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
@@ -129,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
           {onOpenSearch && (
             <button
               onClick={onOpenSearch}
-              className="p-2 rounded-lg bg-carbon border border-border text-ash hover:text-white cursor-pointer"
+              className="p-2 rounded-lg bg-void border border-border text-ash hover:text-white cursor-pointer"
               title="Search"
             >
               <Search className="w-4 h-4" />
@@ -137,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
           )}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg bg-carbon border border-border text-fog hover:text-white cursor-pointer"
+            className="p-2 rounded-lg bg-void border border-border text-fog hover:text-white cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -147,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
 
       {/* Mobile Animated Dropdown Drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-void/98 backdrop-blur-2xl border-b border-border px-6 py-6 space-y-5 font-mono text-sm shadow-2xl animate-in slide-in-from-top duration-200">
+        <div className="sm:hidden absolute top-[74px] left-4 right-4 bg-void/98 backdrop-blur-2xl border border-border rounded-2xl px-6 py-6 space-y-5 font-mono text-sm shadow-2xl pointer-events-auto animate-in slide-in-from-top duration-200">
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -156,7 +160,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between text-fog hover:text-white py-2.5 px-3 rounded-lg hover:bg-carbon border-b border-border/30 last:border-0 transition-colors"
               >
-                <span>{link.label}</span>
+                <div className="flex items-center gap-2">
+                  <span>{link.label}</span>
+                  {link.count && (
+                    <span className="bg-indigo/20 text-indigo border border-indigo/40 text-[9px] px-1.5 py-0.2 rounded-full font-bold">
+                      {link.count}
+                    </span>
+                  )}
+                </div>
                 {link.hasPulse ? (
                   <span className="flex items-center gap-1 text-[10px] text-emerald font-bold">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-ping" />
