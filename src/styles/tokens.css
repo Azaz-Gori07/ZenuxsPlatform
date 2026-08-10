@@ -1,0 +1,51 @@
+:root {
+  /* Surface Stack */
+  --color-void: #000000;
+  --color-carbon: #080808;
+  --color-graphite: #111111;
+  --color-iron: #181818;
+  --color-border: #222222;
+  --color-border-hover: #333333;
+  --color-border-focus: #444444;
+
+  /* Neutrals */
+  --color-smoke: #4a4a4a;
+  --color-steel: #666666;
+  --color-ash: #888888;
+  --color-fog: #b4b4b4;
+  --color-chalk: #dcdcdc;
+  --color-paper: #efefef;
+  --color-bone: #ffffff;
+
+  /* Functional Accents */
+  --color-ember: #da5c2c;
+  --color-ember-hover: #eb6b38;
+  --color-ember-glow: rgba(218, 92, 44, 0.15);
+  
+  --color-indigo: #6798ff;
+  --color-indigo-hover: #7ea8ff;
+  --color-indigo-glow: rgba(103, 152, 255, 0.15);
+
+  --color-emerald: #10b981;
+  --color-emerald-glow: rgba(16, 185, 129, 0.15);
+
+  --color-amber: #f59e0b;
+
+  /* Typography */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-grotesk: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  /* Layout */
+  --container-max: 1320px;
+  --header-height: 64px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-void);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+  }
+}

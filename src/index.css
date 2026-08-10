@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=DM+Mono:wght@400;500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Hedvig+Letters+Serif:opsz@12..24&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Manrope:wght@400;500;600;700&family=Monda:wght@400;500;600;700&family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Red+Hat+Display:wght@400;500;600;700&family=Rethink+Sans:wght@400;500;600;700&family=Tillana:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+@import "./originkit-section-themes.css";
+@import "./originkit-section-theme.css";
+@import "./styles/tokens.css";
+@import "tw-animate-css";
+@source "../src/components/originkit";
+
+@theme inline {
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", -apple-system, sans-serif;
+}
+
+@theme {
+  --color-void: #000000;
+  --color-carbon: #080808;
+  --color-graphite: #111111;
+  --color-iron: #181818;
+  --color-border: #222222;
+  --color-border-hover: #333333;
+  --color-border-focus: #444444;
+
+  --color-smoke: #4a4a4a;
+  --color-steel: #666666;
+  --color-ash: #888888;
+  --color-fog: #b4b4b4;
+  --color-chalk: #dcdcdc;
+  --color-paper: #efefef;
+  --color-bone: #ffffff;
+
+  --color-ember: #da5c2c;
+  --color-ember-hover: #eb6b38;
+  --color-indigo: #6798ff;
+  --color-indigo-hover: #7ea8ff;
+  --color-emerald: #10b981;
+  --color-amber: #f59e0b;
+
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-grotesk: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+}
+
+:root {
+  --bg-0: #09090b;
+  --bg-100: #18181b;
+  --bg-200: #27272a;
+  --bg-300: #3f3f46;
+  --text-100: #fafafa;
+  --text-200: #e4e4e7;
+  --text-300: #a1a1aa;
+  --text-400: #71717a;
+  --radius: 0.5rem;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide-in-1 {
+  animation: fadeSlideIn 0.45s ease-out 0.08s both;
+}
+
+.animate-fade-slide-in-2 {
+  animation: fadeSlideIn 0.45s ease-out 0.16s both;
+}
+
+.animate-fade-slide-in-3 {
+  animation: fadeSlideIn 0.45s ease-out 0.24s both;
+}
+
+.animate-fade-slide-in-4 {
+  animation: fadeSlideIn 0.45s ease-out 0.32s both;
+}
+
+/* Custom Utilities */
+.technical-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.technical-grid-dense {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.technical-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+/* Glass & Surface Treatments */
+.glass-surface {
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.card-surface {
+  background: #111111;
+  border: 1px solid #222222;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card-surface:hover {
+  border-color: #383838;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Typography Helpers */
+.headline-tight {
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.headline-wide {
+  letter-spacing: -0.03em;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 999;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
