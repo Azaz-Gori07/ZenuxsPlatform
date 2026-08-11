@@ -4,20 +4,15 @@ import { products } from '../../data/products';
 import { categories } from '../../data/categories';
 import { Product, ProductCategory } from '../../types/product';
 import { ProductCard } from '../../components/product/ProductCard';
-import { ProductDetailModal } from '../../components/product/ProductDetailModal';
 import ShinyPill from '../../components/originkit/ui/shiny-pill';
 import { Search, Sparkles, Filter, Layers } from 'lucide-react';
 
 export const ProductsPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const initialCategory = (searchParams.get('category') as ProductCategory) || 'all';
-  const initialSlug = searchParams.get('slug');
 
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(
-    initialSlug ? products.find((p) => p.slug === initialSlug) || null : null
-  );
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
@@ -116,11 +111,7 @@ export const ProductsPage: React.FC = () => {
       {/* Product Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((prod) => (
-          <ProductCard
-            key={prod.id}
-            product={prod}
-            onSelect={(p) => setSelectedProduct(p)}
-          />
+          <ProductCard key={prod.id} product={prod} />
         ))}
       </div>
 
@@ -130,12 +121,6 @@ export const ProductsPage: React.FC = () => {
           <p className="text-sm">Try broadening your search query or switching categories.</p>
         </div>
       )}
-
-      {/* Product Detail Modal */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-      />
     </div>
   );
 };

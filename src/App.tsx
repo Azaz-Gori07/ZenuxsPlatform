@@ -7,6 +7,9 @@ import { OpenSourcePage } from './pages/OpenSource/OpenSourcePage';
 import { CommunityPage } from './pages/Community/CommunityPage';
 import { StatusPage } from './pages/Status/StatusPage';
 import { AboutPage } from './pages/About/AboutPage';
+import { TermsPage } from './pages/Legal/TermsPage';
+import { AIPage } from './pages/AI/AIPage';
+import ProductDetailPage from './pages/Products/ProductDetailPage';
 
 export const App: React.FC = () => {
   return (
@@ -15,10 +18,13 @@ export const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:slug" element={<ProductDetailPage />} />
           <Route path="/opensource" element={<OpenSourcePage />} />
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/status" element={<StatusPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/ai" element={<AIPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppShell>

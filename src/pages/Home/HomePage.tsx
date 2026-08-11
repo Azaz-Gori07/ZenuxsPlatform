@@ -1,124 +1,56 @@
 import React from 'react';
-import WaveBg from '../../components/originkit/ui/pulse-lines';
 import { Chapter01Opening } from './chapters/Chapter01Opening';
 import { Chapter02Problem } from './chapters/Chapter02Problem';
 import { Chapter03Principle } from './chapters/Chapter03Principle';
 import { Chapter04Identity } from './chapters/Chapter04Identity';
 import { Chapter05DevTools } from './chapters/Chapter05DevTools';
 import { Chapter06AI } from './chapters/Chapter06AI';
-import { Chapter07Data } from './chapters/Chapter07Data';
-import { Chapter08Security } from './chapters/Chapter08Security';
-import { Chapter09Infra } from './chapters/Chapter09Infra';
-import { Chapter10Plugins } from './chapters/Chapter10Plugins';
-import { Chapter11Ecosystem } from './chapters/Chapter11Ecosystem';
-import { Chapter12OpenSource } from './chapters/Chapter12OpenSource';
-import { Chapter13Builder } from './chapters/Chapter13Builder';
-import { Chapter14Community } from './chapters/Chapter14Community';
-import { Chapter15Present } from './chapters/Chapter15Present';
+import { Chapter07Edge } from './chapters/Chapter07Edge';
+import { Chapter08Hyperlink } from './chapters/Chapter08Hyperlink';
+import { Chapter09HMAX } from './chapters/Chapter09HMAX';
+import { Chapter10API } from './chapters/Chapter10API';
+import { Chapter11Bridge } from './chapters/Chapter11Bridge';
+import { Chapter12Subnet } from './chapters/Chapter12Subnet';
+import { Chapter13SMP } from './chapters/Chapter13SMP';
+import { Chapter14Console } from './chapters/Chapter14Console';
+import { Chapter15Codebase } from './chapters/Chapter15Codebase';
 import { Chapter16Final } from './chapters/Chapter16Final';
+
+const SECTIONS = [
+  { Component: Chapter01Opening, z: 10 },
+  { Component: Chapter02Problem, z: 20 },
+  { Component: Chapter03Principle, z: 30 },
+  { Component: Chapter04Identity, z: 40 },
+  { Component: Chapter05DevTools, z: 50 },
+  { Component: Chapter06AI, z: 60 },
+  { Component: Chapter07Edge, z: 70 },
+  { Component: Chapter08Hyperlink, z: 80 },
+  { Component: Chapter09HMAX, z: 90 },
+  { Component: Chapter10API, z: 100 },
+  { Component: Chapter11Bridge, z: 110 },
+  { Component: Chapter12Subnet, z: 120 },
+  { Component: Chapter13SMP, z: 130 },
+  { Component: Chapter14Console, z: 140 },
+  { Component: Chapter15Codebase, z: 150 },
+  { Component: Chapter16Final, z: 160 },
+];
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="relative w-full flex flex-col items-center">
-      {/* Originkit Pulse Lines Home Page Root Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-25 overflow-hidden">
-        <WaveBg
-          shape="line"
-          type="vertical"
-          speed={55}
-          lineWidth={1.5}
-          gap={48}
-          scale={2.2}
-          backgroundColor="transparent"
-          lineColor="#181818"
-          colors={{
-            paletteCount: 3,
-            color1: "#da5c2c",
-            color2: "#6798ff",
-            color3: "#10b981"
+    <div className="relative w-full">
+      {SECTIONS.map(({ Component, z }, idx) => (
+        <section
+          key={z}
+          className="min-h-[100svh] w-full"
+          style={{
+            zIndex: z,
+            position: idx === 0 ? 'relative' : 'sticky',
+            top: idx === 0 ? undefined : 0,
           }}
-        />
-      </div>
-
-      {/* Chapter 01: Opening / Identity (Hero Section) */}
-      <div className="relative z-10 w-full">
-        <Chapter01Opening />
-      </div>
-
-      {/* Chapter 02: The Problem */}
-      <div className="relative z-10 w-full">
-        <Chapter02Problem />
-      </div>
-
-      {/* Chapter 03: The Principle */}
-      <div className="relative z-10 w-full">
-        <Chapter03Principle />
-      </div>
-
-      {/* Chapter 04: Identity — Zenuxs Accounts */}
-      <div className="relative z-10 w-full">
-        <Chapter04Identity />
-      </div>
-
-      {/* Chapter 05: Developer Tooling — Zenuxs CLI */}
-      <div className="relative z-10 w-full">
-        <Chapter05DevTools />
-      </div>
-
-      {/* Chapter 06: Intelligence — Zenuxs AI & Code */}
-      <div className="relative z-10 w-full">
-        <Chapter06AI />
-      </div>
-
-      {/* Chapter 07: Data — Easy-Mongoo */}
-      <div className="relative z-10 w-full">
-        <Chapter07Data />
-      </div>
-
-      {/* Chapter 08: Security — HMAX-SECURE */}
-      <div className="relative z-10 w-full">
-        <Chapter08Security />
-      </div>
-
-      {/* Chapter 09: Infrastructure — Hosting & DNS */}
-      <div className="relative z-10 w-full">
-        <Chapter09Infra />
-      </div>
-
-      {/* Chapter 10: Extensions — Minecraft Plugins */}
-      <div className="relative z-10 w-full">
-        <Chapter10Plugins />
-      </div>
-
-      {/* Chapter 11: The Products Connect — 3D Constellation */}
-      <div className="relative z-10 w-full">
-        <Chapter11Ecosystem />
-      </div>
-
-      {/* Chapter 12: Open Source — Source is the Product */}
-      <div className="relative z-10 w-full">
-        <Chapter12OpenSource />
-      </div>
-
-      {/* Chapter 13: What Can I Build? */}
-      <div className="relative z-10 w-full">
-        <Chapter13Builder />
-      </div>
-
-      {/* Chapter 14: Community & Discord */}
-      <div className="relative z-10 w-full">
-        <Chapter14Community />
-      </div>
-
-      {/* Chapter 15: The Present */}
-      <div className="relative z-10 w-full">
-        <Chapter15Present />
-      </div>
-
-      {/* Chapter 16: Final Statement */}
-      <div className="relative z-10 w-full">
-        <Chapter16Final />
-      </div>
+        >
+          <Component />
+        </section>
+      ))}
     </div>
   );
 };

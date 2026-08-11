@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Product } from '../../types/product';
 import { StatusBadge, CategoryBadge } from '../ui/Badge';
 import { ExternalLink, ArrowRight, BookOpen } from 'lucide-react';
@@ -6,10 +7,9 @@ import { GithubIcon } from '../ui/Icons';
 
 interface ProductCardProps {
   product: Product;
-  onSelect?: (product: Product) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="group relative rounded-xl border border-border bg-graphite p-5 sm:p-6 transition-all duration-300 hover:border-border-hover hover:shadow-2xl flex flex-col justify-between overflow-hidden">
       {/* Top Accent Line */}
@@ -57,13 +57,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
 
       {/* Action Footer */}
       <div className="pt-4 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
-        <button
-          onClick={() => onSelect?.(product)}
-          className="text-ember hover:text-ember-hover font-semibold flex items-center gap-1 group/btn cursor-pointer"
+        <Link
+          to={`/products/${product.slug}`}
+          className="text-ember hover:text-ember-hover font-semibold flex items-center gap-1 group/btn"
         >
           <span>Architecture & Details</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
-        </button>
+        </Link>
 
         <div className="flex items-center space-x-2">
           {product.githubUrl && (

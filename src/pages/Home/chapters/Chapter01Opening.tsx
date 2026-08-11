@@ -1,344 +1,134 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import DottedBg2 from '../../../components/originkit/ui/chromatic-waves';
-import { MagneticButton } from '../../../components/motion/MagneticButton';
-import { GithubIcon } from '../../../components/ui/Icons';
-import {
-  ArrowRight,
-  Sparkles,
-  KeyRound,
-  Shield,
-  Database,
-  Terminal,
-  Globe,
-  Box,
-  Copy,
-  Check,
-  Activity,
-  Code2
-} from 'lucide-react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Reveal } from '../../../components/motion/Reveal';
+import Vortex from '../../../components/originkit/ui/tornado';
+import { ArrowRight, Shield, Zap, Terminal, Code2, Network, Database, CheckCircle2, Copy } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Chapter01Opening: React.FC = () => {
-  const [copiedCmd, setCopiedCmd] = useState(false);
-  const [activeModule, setActiveModule] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = React.useState(false);
 
-  const heroModules = [
-    {
-      id: 'accounts',
-      name: 'Zenuxs Accounts',
-      category: 'Identity',
-      desc: 'Universal OAuth 2.0 + PKCE with silent token rotation',
-      badge: 'RFC 7636',
-      icon: KeyRound,
-      color: '#da5c2c',
-      url: 'https://zenuxs.in'
-    },
-    {
-      id: 'hmax',
-      name: 'HMAX-SECURE',
-      category: 'Security',
-      desc: 'Layered HMAC-SHA512 pepper sealing & Argon2id KDF',
-      badge: 'Zero Deps',
-      icon: Shield,
-      color: '#da5c2c',
-      url: 'https://hmax.zenuxs.in'
-    },
-    {
-      id: 'easy-mongoo',
-      name: 'Easy-Mongoo',
-      category: 'Data',
-      desc: 'Ergonomic TypeScript MongoDB ODM with soft-delete',
-      badge: 'npm active',
-      icon: Database,
-      color: '#10b981',
-      url: 'https://easy-mongoo.zenuxs.in'
-    },
-    {
-      id: 'code',
-      name: 'Zenuxs.Code',
-      category: 'AI / IDE',
-      desc: 'The AI Operating System with unified memory graph',
-      badge: 'Context Engine',
-      icon: Code2,
-      color: '#6798ff',
-      url: 'https://code.zenuxs.in'
-    }
-  ];
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText('npm install -g zenuxs-cli');
-    setCopiedCmd(true);
-    setTimeout(() => setCopiedCmd(false), 2000);
+  const copyEmail = () => {
+    navigator.clipboard.writeText('azazgori786@gmail.com').then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from('.hero-module-card', {
+        y: 20, opacity: 0, duration: 0.5, stagger: 0.08, delay: 0.5,
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
+  const heroModules = [
+    { name: 'Zenuxs Accounts', desc: 'OAuth 2.0 + PKCE', icon: Shield, accent: 'text-ember' },
+    { name: 'Zenuxs AI', desc: 'Persistent Memory', icon: Zap, accent: 'text-indigo' },
+    { name: 'Easy-Mongoo', desc: 'MongoDB Wrapper', icon: Database, accent: 'text-emerald' },
+    { name: 'Zenuxs CLI', desc: 'Terminal Tooling', icon: Terminal, accent: 'text-amber-400' },
+    { name: 'Zenuxs.Code', desc: 'AI Workspace', icon: Code2, accent: 'text-indigo' },
+    { name: 'HMAX-SECURE', desc: 'Crypto Primitives', icon: Shield, accent: 'text-ember' },
+  ];
+
   return (
-    <section className="relative w-full min-h-[100svh] flex flex-col justify-between overflow-hidden bg-void border-b border-border/60">
-      {/* 1. CHROMATIC WAVES BACKGROUND SHADER */}
-      <div className="absolute inset-0 z-0 opacity-45 pointer-events-none">
-        <DottedBg2
-          frequency={1.5}
-          speed={2.2}
-          cellSize={30}
-          gamma={5.5}
-          paletteBias={-2.2}
-          bgColor="#000000"
-          colors={[
-            '#0a0a0a',
-            '#141414',
-            '#da5c2c',
-            '#2a2a2a',
-            '#6798ff',
-            '#10b981',
-            '#ffffff'
-          ]}
+    <section
+      ref={containerRef}
+      className="relative w-full h-full min-h-[100svh] flex items-center overflow-hidden"
+    >
+      {/* Tornado — full-width first layer, nudged right */}
+      <div className="absolute inset-0 pointer-events-none translate-x-1/6" aria-hidden="true">
+        <Vortex
+          background="transparent"
+          topRadius={280}
+          waistRadius={40}
+          bottomRadius={800}
+          twist={2.5}
+          zoom={75}
+          speed={10}
+          lineOptions={{ count: 160, color: '#6798ff', glow: 8 }}
+          dots
+          dotOptions={{ count: 4000, size: 16, color: '#da5c2c', glow: 8, flicker: 8 }}
+          comets
+          cometOptions={{ count: 8, speed: 5, color: '#F9731A', glow: 6, tail: 16, delay: 6, collide: 6 }}
         />
       </div>
 
-      {/* Atmospheric Vignette & Radial Light Mask */}
-      <div className="absolute inset-0 z-1 pointer-events-none bg-gradient-to-b from-void/40 via-transparent to-void/90" />
-      <div className="absolute inset-0 z-1 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,transparent_20%,#000000_90%)]" />
+      {/* Hero Content */}
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 pt-24 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-7 space-y-8">
+            <Reveal>
+              <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-ember bg-transparent border border-ember/25 px-3 py-1 rounded-full">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Unified Developer Ecosystem</span>
+              </div>
+            </Reveal>
 
-      {/* Subtle Technical Grid Lines */}
-      <div className="absolute inset-0 z-1 technical-grid opacity-30 pointer-events-none" />
-
-      {/* Top Spacer to account for fixed navbar */}
-      <div className="h-16 sm:h-20" />
-
-      {/* 2. MAIN ASYMMETRIC HERO COMPOSITION */}
-      <div className="relative z-10 w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12 my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          
-          {/* LEFT COLUMN: Architectural Editorial Typography (7 Cols) */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-            
-            {/* Eyebrow / System Pill */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-ember bg-ember/10 border border-ember/25 px-3 py-1 rounded"
-            >
-              <span className="w-2 h-2 rounded-full bg-ember animate-pulse" />
-              <span>ZENUXS PLATFORM</span>
-              <span className="text-steel">•</span>
-              <span className="text-fog">OPEN TECHNOLOGY ECOSYSTEM</span>
-            </motion.div>
-
-            {/* Massive Display Architectural Headline */}
-            <div className="space-y-0.5">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <span className="block font-display font-bold text-5xl sm:text-7xl lg:text-8xl xl:text-9xl text-white tracking-tighter leading-[0.88]">
-                  BUILD
+            <Reveal delay={0.1}>
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight">
+                BUILD THE SYSTEM.
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-ember to-ember/60">
+                  NOT THE SAME SYSTEM TWICE.
                 </span>
-              </motion.div>
+              </h1>
+            </Reveal>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <span className="block font-display font-bold text-5xl sm:text-7xl lg:text-8xl xl:text-9xl text-white tracking-tighter leading-[0.88] text-transparent bg-clip-text bg-gradient-to-r from-white via-paper to-ash">
-                  BEYOND
-                </span>
-              </motion.div>
+            <Reveal delay={0.15}>
+              <p className="font-sans text-fog text-base sm:text-lg leading-relaxed max-w-xl">
+                A developer-first ecosystem built on cryptographic rigor, modularity, and open-source transparency.
+              </p>
+            </Reveal>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-                className="flex items-center gap-3 sm:gap-5"
-              >
-                <span className="block font-display font-bold text-5xl sm:text-7xl lg:text-8xl xl:text-9xl text-white tracking-tighter leading-[0.88]">
-                  THE TOOL.
-                </span>
-                <span className="hidden sm:inline-block w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-ember shadow-lg shadow-ember/50" />
-              </motion.div>
-            </div>
-
-            {/* Subtext */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.28 }}
-              className="font-sans text-fog text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl font-normal"
-            >
-              Zenuxs is an open-source ecosystem of identity platforms, cryptographic security, database wrappers, AI operating systems, and developer infrastructure built to eliminate repeated boilerplate fatigue.
-            </motion.p>
-
-            {/* Actions & Terminal Quickstart */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.38 }}
-              className="flex flex-wrap items-center gap-4 pt-2 font-mono"
-            >
-              <MagneticButton>
-                <a
-                  href="#ecosystem"
-                  className="px-6 py-3.5 rounded bg-ember hover:bg-ember-hover text-white text-xs sm:text-sm font-semibold shadow-2xl shadow-ember/25 border border-ember/40 flex items-center gap-2 transition-all cursor-pointer group"
-                >
-                  <span>Explore the ecosystem</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <Reveal delay={0.2}>
+              <div className="flex flex-wrap items-center gap-3 font-mono text-sm">
+                <a href="https://zenuxs.in" target="_blank" rel="noopener noreferrer"
+                   className="px-6 py-3 rounded-lg bg-transparent hover:bg-ember/10 border border-ember/40 text-ember hover:text-white font-semibold transition-all flex items-center gap-2">
+                  Start Building <ArrowRight className="w-4 h-4" />
                 </a>
-              </MagneticButton>
-
-              <MagneticButton>
-                <a
-                  href="https://github.com/zenuxs-dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-3.5 rounded bg-carbon hover:bg-iron text-paper hover:text-white text-xs sm:text-sm font-semibold border border-border flex items-center gap-2 transition-all cursor-pointer"
-                >
-                  <GithubIcon className="w-4 h-4 text-white" />
-                  <span>View source ↗</span>
+                <a href="https://github.com/zenuxs-dev" target="_blank" rel="noopener noreferrer"
+                   className="px-5 py-3 rounded-lg bg-transparent hover:bg-white/5 text-fog hover:text-white border border-border transition-colors flex items-center gap-2">
+                  GitHub
                 </a>
-              </MagneticButton>
+              </div>
+            </Reveal>
 
-              {/* Quick Terminal Copy Pill */}
-              <div className="flex items-center gap-2 bg-void/80 border border-border/80 rounded-lg px-3 py-2 text-xs text-fog">
-                <span className="text-ember font-bold">~ ❯</span>
-                <span className="text-ash select-all">npm i -g zenuxs-cli</span>
-                <button
-                  onClick={handleCopy}
-                  className="p-1 rounded hover:bg-iron text-steel hover:text-white transition-colors cursor-pointer"
-                  title="Copy command"
-                >
-                  {copiedCmd ? <Check className="w-3.5 h-3.5 text-emerald" /> : <Copy className="w-3.5 h-3.5" />}
+            <Reveal delay={0.25}>
+              <div className="flex items-center gap-2 pt-2">
+                <span className="text-steel font-mono text-xs">Founder: Azaz Ahmad</span>
+                <span className="text-border">|</span>
+                <span className="text-steel font-mono text-xs">azazgori786@gmail.com</span>
+                <button onClick={copyEmail}
+                        className="p-1 rounded bg-transparent hover:bg-white/5 border border-border text-ash hover:text-white transition-colors cursor-pointer"
+                        title="Copy email">
+                  {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
               </div>
-            </motion.div>
+            </Reveal>
           </div>
 
-          {/* RIGHT COLUMN: Interactive Ecosystem Control Matrix (5 Cols) */}
           <div className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="rounded-xl border border-border bg-graphite/90 backdrop-blur-xl p-5 sm:p-6 shadow-2xl space-y-4 font-mono text-xs relative overflow-hidden"
-            >
-              {/* Card Window Bar */}
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-steel">
-                <div className="flex items-center space-x-2">
-                  <div className="flex space-x-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                  </div>
-                  <span className="text-white font-bold pl-2 text-xs">
-                    Ecosystem Matrix
-                  </span>
-                </div>
-                <span className="flex items-center gap-1 text-[11px] text-emerald">
-                  <Activity className="w-3 h-3 text-emerald animate-pulse" />
-                  <span>Online (10/10)</span>
-                </span>
-              </div>
-
-              {/* Module Selector Chips */}
-              <div className="grid grid-cols-2 gap-2 pt-1">
+            <Reveal direction="right">
+              <div className="grid grid-cols-2 gap-3">
                 {heroModules.map((mod, idx) => {
                   const Icon = mod.icon;
-                  const isCurrent = activeModule === idx;
                   return (
-                    <button
-                      key={mod.id}
-                      onClick={() => setActiveModule(idx)}
-                      className={`p-3 rounded-lg border text-left transition-all cursor-pointer flex flex-col justify-between ${
-                        isCurrent
-                          ? 'bg-carbon border-ember text-white shadow-lg'
-                          : 'bg-void/60 border-border/60 text-ash hover:text-fog hover:border-border'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-1.5">
-                        <Icon className="w-4 h-4" style={{ color: mod.color }} />
-                        <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded bg-iron border border-border/60 text-steel">
-                          {mod.category}
-                        </span>
-                      </div>
-                      <span className="font-display font-bold text-xs truncate block text-white">
-                        {mod.name}
-                      </span>
-                    </button>
+                    <div key={mod.name} className="hero-module-card p-4 rounded-xl bg-transparent border border-white/5 hover:border-ember/40 transition-all">
+                      <Icon className={`w-5 h-5 ${mod.accent} mb-2`} />
+                      <span className="text-white font-display font-bold text-xs block">{mod.name}</span>
+                      <span className="text-steel font-mono text-[10px]">{mod.desc}</span>
+                    </div>
                   );
                 })}
               </div>
-
-              {/* Active Module Live Display Frame */}
-              <div className="p-4 rounded-lg bg-void border border-border/80 space-y-2.5">
-                <div className="flex items-center justify-between text-[11px] text-steel">
-                  <span className="text-ember font-bold font-mono uppercase">
-                    ACTIVE INSPECTOR: {heroModules[activeModule].name}
-                  </span>
-                  <span className="text-indigo bg-indigo/10 px-2 py-0.5 rounded border border-indigo/20 text-[10px]">
-                    {heroModules[activeModule].badge}
-                  </span>
-                </div>
-
-                <p className="font-sans text-fog text-xs leading-relaxed">
-                  {heroModules[activeModule].desc}
-                </p>
-
-                <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[11px]">
-                  <span className="text-steel">Permissive License</span>
-                  <a
-                    href={heroModules[activeModule].url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-ember hover:underline font-semibold flex items-center gap-1"
-                  >
-                    <span>Launch Subsystem</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Footer System Specs */}
-              <div className="grid grid-cols-3 gap-2 text-center text-[10px] text-ash pt-1">
-                <div className="p-2 rounded bg-carbon border border-border/60">
-                  <span className="text-white font-bold block">100%</span>
-                  <span className="text-steel">TypeScript</span>
-                </div>
-                <div className="p-2 rounded bg-carbon border border-border/60">
-                  <span className="text-white font-bold block">0 Deps</span>
-                  <span className="text-steel">HMAX Crypto</span>
-                </div>
-                <div className="p-2 rounded bg-carbon border border-border/60">
-                  <span className="text-white font-bold block">Anycast</span>
-                  <span className="text-steel">Global DNS</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* 3. HERO FOOTER TELEMETRY STRIP */}
-      <div className="relative z-10 w-full bg-void/80 backdrop-blur border-t border-border/60 py-3.5 px-4 sm:px-6 lg:px-12 font-mono text-[11px] text-steel">
-        <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center space-x-4">
-            <span className="flex items-center gap-1.5 text-fog">
-              <Terminal className="w-3.5 h-3.5 text-ember" />
-              <span>zenuxs-cli v2.4</span>
-            </span>
-            <span>•</span>
-            <span className="text-emerald flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald animate-ping" />
-              <span>Identity & Security: Live</span>
-            </span>
-          </div>
-
-          <div className="hidden sm:flex items-center space-x-4 text-ash">
-            <span>RFC 7636 (PKCE)</span>
-            <span>•</span>
-            <span>Argon2id + HMAC-512</span>
-            <span>•</span>
-            <span className="text-white font-bold">github.com/zenuxs-dev</span>
+            </Reveal>
           </div>
         </div>
       </div>

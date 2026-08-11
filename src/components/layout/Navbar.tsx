@@ -23,38 +23,39 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   const navLinks = [
     { label: 'Ecosystem', path: '/#ecosystem' },
     { label: 'Products', path: '/products', count: '10' },
+    { label: 'AI Assistant', path: '/ai', hasPulse: true },
     { label: 'Open Source', path: '/opensource' },
     { label: 'Community', path: '/community' },
-    { label: 'Status', path: '/status', hasPulse: true },
+    { label: 'Status', path: '/status' },
     { label: 'About', path: '/about' }
   ];
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
-      <div
-        className={`w-[90%] max-w-[1280px] h-[62px] rounded-full transition-all duration-300 pointer-events-auto flex items-center justify-between px-5 sm:px-6 ${
-          isScrolled
-            ? 'bg-carbon/80 backdrop-blur-2xl border border-white/15 shadow-2xl shadow-black/80'
-            : 'bg-carbon/70 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/50'
-        }`}
-      >
+        <div
+          className={`w-[92%] max-w-[1340px] h-[72px] rounded-full transition-all duration-300 pointer-events-auto flex items-center justify-between px-6 sm:px-8 ${
+            isScrolled
+              ? 'bg-carbon/80 backdrop-blur-2xl border border-white/15 shadow-2xl shadow-black/80'
+              : 'bg-carbon/70 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/50'
+          }`}
+        >
         {/* Brand Logo & Version Tag */}
         <Link to="/" className="flex items-center space-x-3 group cursor-pointer">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-ember to-indigo flex items-center justify-center font-display font-bold text-black shadow-lg shadow-ember/25 transition-all group-hover:scale-105">
-            <span className="font-mono text-base font-black">Z</span>
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ember to-indigo flex items-center justify-center font-display font-bold text-black shadow-lg shadow-ember/25 transition-all group-hover:scale-105">
+            <span className="font-mono text-lg font-black">Z</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-display font-bold text-base tracking-tight text-white group-hover:text-ember transition-colors">
+            <span className="font-display font-bold text-lg tracking-tight text-white group-hover:text-ember transition-colors">
               ZENUXS
             </span>
-            <span className="hidden sm:inline-block font-mono text-[9px] uppercase tracking-widest text-ember bg-ember/10 border border-ember/30 px-1.5 py-0.5 rounded font-bold">
+            <span className="hidden sm:inline-block font-mono text-[10px] uppercase tracking-widest text-ember bg-ember/10 border border-ember/30 px-2 py-0.5 rounded font-bold">
               v2.4
             </span>
           </div>
         </Link>
 
         {/* Center Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1 font-mono text-xs text-fog bg-void/50 backdrop-blur-md border border-border/80 rounded-full px-2 py-1 shadow-inner">
+        <nav className="hidden md:flex items-center space-x-1 font-mono text-sm text-fog bg-void/50 backdrop-blur-md border border-border/80 rounded-full px-2 py-1.5 shadow-inner">
           {navLinks.map((link) => {
             const isActive =
               link.path === '/#ecosystem'
@@ -121,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             href="https://zenuxs.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-1.5 rounded-full bg-ember hover:bg-ember-hover text-white font-mono text-xs font-semibold shadow-lg shadow-ember/30 border border-ember/40 transition-all flex items-center gap-1.5 cursor-pointer group"
+            className="px-5 py-2 rounded-full bg-ember hover:bg-ember-hover text-white font-mono text-sm font-semibold shadow-lg shadow-ember/30 border border-ember/40 transition-all flex items-center gap-1.5 cursor-pointer group"
           >
             <span>Accounts SSO</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />

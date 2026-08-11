@@ -147,6 +147,11 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/ai" className="hover:text-white transition-colors">
+                  Continue AI Assistant
+                </Link>
+              </li>
+              <li>
                 <Link to="/opensource" className="hover:text-white transition-colors">
                   Open Source Hub
                 </Link>
@@ -164,6 +169,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link to="/about" className="hover:text-white transition-colors">
                   About Zenuxs
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-white transition-colors">
+                  Terms & Conditions
                 </Link>
               </li>
             </ul>

@@ -5,13 +5,13 @@
 
 ## Just installed
 
-- Components: shiny-pill
+- Components: tornado
 - Files directory: `src/components/originkit/`
 - Import alias root: `@/components/originkit`
 
 ### Files written
 
-- `src/components/originkit/ui/shiny-pill.tsx`
+- `src/components/originkit/ui/tornado.tsx`
 
 ## Required: Tailwind CSS
 
@@ -41,6 +41,14 @@ Tailwind v4 example in CSS:
 
 3. Render it once to verify layout + images.
 4. Many sections are client components (`"use client"`) — keep that directive.
+
+## npm dependencies
+
+Install if missing:
+
+```bash
+npm install three
+```
 
 ## Do not
 
