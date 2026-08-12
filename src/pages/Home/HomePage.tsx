@@ -45,7 +45,7 @@ export const HomePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Secondary scroll reset after DOM paint and animation setup
+    // Secondary scroll reset after DOM paint
     const timer = setTimeout(() => {
       window.scrollTo(0, 0);
     }, 50);
@@ -53,12 +53,12 @@ export const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full snap-y snap-mandatory">
       {SECTIONS.map(({ Component, z }, idx) => (
         <section
           key={z}
           id={idx === 0 ? 'hero-chapter' : `chapter-${idx}`}
-          className="min-h-[100svh] w-full"
+          className="h-[100svh] min-h-[100svh] w-full snap-start snap-always overflow-hidden chapter-snap-section"
           style={{
             zIndex: z,
             position: idx === 0 ? 'relative' : 'sticky',

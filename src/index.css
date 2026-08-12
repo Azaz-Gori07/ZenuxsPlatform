@@ -82,6 +82,16 @@
 }
 
 /* Custom Utilities */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.chapter-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 .technical-grid {
   background-size: 40px 40px;
   background-image: 
