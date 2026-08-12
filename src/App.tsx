@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
+import { ScrollToTop } from './components/layout/ScrollToTop';
 import { HomePage } from './pages/Home/HomePage';
 import { ProductsPage } from './pages/Products/ProductsPage';
 import { OpenSourcePage } from './pages/OpenSource/OpenSourcePage';
@@ -15,6 +16,7 @@ import ProductDetailPage from './pages/Products/ProductDetailPage';
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AppShell>
         <Routes>
           <Route path="/" element={<HomePage />} />
