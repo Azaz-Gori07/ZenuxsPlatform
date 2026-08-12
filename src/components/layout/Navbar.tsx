@@ -45,7 +45,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
         }`}
       >
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center space-x-2.5 group cursor-pointer shrink-0">
+        <Link
+          to="/"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
+          className="flex items-center space-x-2.5 group cursor-pointer shrink-0"
+        >
           <div className="w-8 h-8 rounded-lg bg-ember flex items-center justify-center font-display font-bold text-white shadow-md shadow-ember/20 transition-transform group-hover:scale-105">
             <span className="font-mono text-sm font-black">Z</span>
           </div>

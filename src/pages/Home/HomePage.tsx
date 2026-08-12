@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import { Chapter01Opening } from './chapters/Chapter01Opening';
 import { Chapter02Problem } from './chapters/Chapter02Problem';
 import { Chapter03Principle } from './chapters/Chapter03Principle';
@@ -36,11 +36,28 @@ const SECTIONS = [
 ];
 
 export const HomePage: React.FC = () => {
+  // Ensure page starts at Chapter 01 (Hero) on reload or mount
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    // Secondary scroll reset after DOM paint and animation setup
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="relative w-full">
       {SECTIONS.map(({ Component, z }, idx) => (
         <section
           key={z}
+          id={idx === 0 ? 'hero-chapter' : `chapter-${idx}`}
           className="min-h-[100svh] w-full"
           style={{
             zIndex: z,
