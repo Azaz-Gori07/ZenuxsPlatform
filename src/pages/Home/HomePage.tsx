@@ -61,7 +61,7 @@ export const HomePage: React.FC = () => {
         <section
           key={z}
           id={idx === 0 ? 'hero-chapter' : `chapter-${idx}`}
-          className="w-full chapter-snap-section"
+          className="w-full min-h-[100vh] max-h-auto chapter-snap-section"
           style={{
             position: idx === 0 ? 'relative' : 'sticky',
             top: idx === 0 ? undefined : 0,
