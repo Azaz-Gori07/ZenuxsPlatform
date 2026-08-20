@@ -1,2 +1,0 @@
-function a(e,t){return{description:"Standardized open-source primitives spanning identity, security, data, AI developer tooling, and global edge infrastructure.",favicon:"https://framerusercontent.com/assets/rE38UbgTFsl8LDZ8A8gGLsu1bDw.svg",robots:"max-image-preview:large",socialImage:"https://framerusercontent.com/assets/jJVTteuKwWv0XR5ApPiRAV67Ds.svg",title:"Zenuxs — Open Technology Ecosystem | Build Beyond The Tool"}}export{a};
-//# sourceMappingURL=chunk-CAXAEWAR.mjs.map
