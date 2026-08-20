@@ -4,7 +4,7 @@ import { Globe, ArrowRight } from 'lucide-react';
 
 export const Chapter07Edge: React.FC = () => {
   return (
-    <section className="relative w-full h-full min-h-[100svh] bg-graphite flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-graphite flex items-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(16,185,129,0.06),transparent)]" />
         <div className="absolute inset-0 technical-grid-dense opacity-15" />

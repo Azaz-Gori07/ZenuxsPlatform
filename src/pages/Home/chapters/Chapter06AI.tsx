@@ -5,7 +5,7 @@ import { ContinueChat } from '../../../components/ai/ContinueChat';
 
 export const Chapter06AI: React.FC = () => {
   return (
-    <section className="relative w-full h-full min-h-[100svh] bg-carbon flex items-center overflow-hidden py-16 sm:py-24">
+    <section className="relative w-full min-h-[100svh] bg-carbon flex items-center overflow-hidden py-16 sm:py-24">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_30%_50%,rgba(103,152,255,0.08),transparent)]" />
         <div className="absolute inset-0 technical-grid opacity-20" />

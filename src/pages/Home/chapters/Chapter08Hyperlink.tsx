@@ -4,7 +4,7 @@ import { Link2, Shield, Zap } from 'lucide-react';
 
 export const Chapter08Hyperlink: React.FC = () => {
   return (
-    <section className="relative w-full h-full min-h-[100svh] bg-void flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-void flex items-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_50%,rgba(218,92,44,0.06),transparent)]" />
         <div className="absolute inset-0 technical-dots opacity-20" />

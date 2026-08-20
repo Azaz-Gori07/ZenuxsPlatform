@@ -10,7 +10,7 @@ const pillars = [
 
 export const Chapter03Principle: React.FC = () => {
   return (
-    <section className="relative w-full h-full min-h-[100svh] bg-graphite flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-graphite flex items-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 technical-grid-dense opacity-15" />
       </div>

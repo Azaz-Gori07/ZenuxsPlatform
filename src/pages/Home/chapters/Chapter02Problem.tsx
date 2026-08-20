@@ -4,7 +4,7 @@ import { AlertTriangle } from 'lucide-react';
 
 export const Chapter02Problem: React.FC = () => {
   return (
-    <section className="relative w-full h-full min-h-[100svh] bg-carbon flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-carbon flex items-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(218,92,44,0.04),transparent)]" />
       </div>
