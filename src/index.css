@@ -83,8 +83,7 @@
 
 /* Custom Utilities */
 html {
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overscroll-behavior: contain;
 }
 

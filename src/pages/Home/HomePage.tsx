@@ -55,7 +55,7 @@ export const HomePage: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full snap-y snap-mandatory"
+      className="relative w-full snap-y snap-proximity"
       style={{ overscrollBehavior: 'contain' }}
     >
       {SECTIONS.map(({ Component, z }, idx) => (
