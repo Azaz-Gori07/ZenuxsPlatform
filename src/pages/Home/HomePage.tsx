@@ -38,6 +38,7 @@ const SECTIONS = [
 export const HomePage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sectionHeights, setSectionHeights] = useState<Record<number, number>>({});
+  const [baseline, setBaseline] = useState(0);
 
   useLayoutEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -55,32 +56,39 @@ export const HomePage: React.FC = () => {
 
   // Measure each section's content height on mount
   useLayoutEffect(() => {
-    const viewportHeight = window.innerHeight;
-    const heights: Record<number, number> = {};
-
     const observeSections = () => {
-      const sections = containerRef.current?.querySelectorAll('section');
-      if (!sections) return;
+      const container = containerRef.current;
+      if (!container) return;
 
+      // Only direct children — chapters contain their own nested <section>
+      const sections = Array.from(container.children) as HTMLElement[];
+      if (sections.length === 0) return;
+
+      // Hero is exactly 100vh — use it as the true viewport baseline
+      // (avoids window.innerHeight mismatch with CSS 100vh on mobile)
+      const heroHeight = sections[0].getBoundingClientRect().height;
+
+      const heights: Record<number, number> = {};
       sections.forEach((section, idx) => {
-        const rect = section.getBoundingClientRect();
-        // Height is viewport height + any overflow beyond
-        heights[idx] = rect.height;
+        heights[idx] = section.getBoundingClientRect().height;
       });
+
+      setBaseline(heroHeight);
       setSectionHeights(heights);
     };
 
     observeSections();
     window.addEventListener('resize', observeSections);
     return () => window.removeEventListener('resize', observeSections);
-  }, [containerRef]);
+  }, []);
 
   // Determine which sections should use sticky positioning
   const shouldUseSticky = useCallback((idx: number): boolean => {
+    if (baseline === 0) return true; // default to sticky until measured
     const height = sectionHeights[idx];
-    if (height === undefined) return true; // default to sticky if unmeasured
-    return height <= window.innerHeight + 20; // 20px tolerance
-  }, [sectionHeights]);
+    if (height === undefined) return true;
+    return height <= baseline + 20; // 20px tolerance
+  }, [sectionHeights, baseline]);
 
   return (
     <div
