@@ -55,18 +55,15 @@ export const HomePage: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
+      className="relative w-full snap-y snap-mandatory"
       style={{ overscrollBehavior: 'contain' }}
     >
       {SECTIONS.map(({ Component, z }, idx) => (
         <section
           key={z}
           id={idx === 0 ? 'hero-chapter' : `chapter-${idx}`}
-          className="w-full chapter-snap-section"
-          style={{
-            position: idx === 0 ? 'relative' : 'relative',
-            zIndex: z,
-          }}
+          className="w-full snap-end chapter-snap-section"
+          style={{ zIndex: z }}
         >
           <Component />
         </section>
