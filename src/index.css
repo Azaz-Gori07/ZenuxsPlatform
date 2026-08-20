@@ -84,12 +84,15 @@
 /* Custom Utilities */
 html {
   scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  overscroll-behavior: contain;
+  will-change: scroll-position;
 }
 
 .chapter-snap-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  contain: layout style paint;
 }
 
 .technical-grid {

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="2000"
+  height="2000"
+  viewBox="0 0 2000 2000"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <title>Rounded Z Logo</title>
+
+  <defs>
+    <!-- Rounded canvas -->
+    <clipPath id="roundedCanvas">
+      <rect
+        x="0"
+        y="0"
+        width="2000"
+        height="2000"
+        rx="160"
+        ry="160"
+      />
+    </clipPath>
+  </defs>
+
+  <!-- Everything is clipped inside rounded corners -->
+  <g clip-path="url(#roundedCanvas)">
+
+    <!-- Black background -->
+    <rect
+      x="0"
+      y="0"
+      width="2000"
+      height="2000"
+      fill="#000000"
+    />
+
+    <!-- Centered Z — 85% height -->
+    <g
+      fill="#FFFFFF"
+      transform="translate(-376.92 -396.15) scale(2.1794872)"
+    >
+
+      <path d="
+        M 1003 251
+        L 959 274
+        L 901 307
+        L 870 307
+        L 869 308
+        L 852 308
+        L 851 307
+        L 847 308
+        L 837 308
+        L 836 307
+        L 817 307
+        L 816 308
+        L 809 308
+        L 808 307
+        L 762 307
+        L 761 308
+        L 759 307
+        L 747 307
+        L 746 308
+        L 741 307
+        L 671 307
+        L 670 308
+        L 662 308
+        L 661 307
+        L 657 308
+        L 656 307
+        L 647 307
+        L 646 308
+        L 637 308
+        L 636 307
+        L 618 307
+        L 617 308
+        L 612 308
+        L 611 307
+        L 520 307
+        L 519 308
+        L 515 307
+        L 473 307
+        L 472 308
+        L 471 307
+        L 470 308
+        L 469 307
+        L 457 307
+        L 456 308
+        L 427 307
+        L 426 308
+        L 418 308
+        L 417 307
+        L 411 307
+        L 410 308
+        L 404 308
+        L 393 313
+        L 385 321
+        L 369 344
+        L 325 402
+        L 324 409
+        L 328 416
+        L 330 417
+        L 687 417
+        L 688 418
+        L 423 749
+        L 635 592
+        L 651 579
+        L 792 476
+        L 839 428
+        Z
+      "/>
+
+      <path d="
+        M 884 498
+        L 820 541
+        L 626 679
+        L 542 741
+        L 486 793
+        L 402 877
+        L 307 978
+        L 260 1031
+        L 406 931
+        L 439 910
+        L 440 911
+        L 441 910
+        L 451 910
+        L 452 911
+        L 466 911
+        L 467 910
+        L 475 910
+        L 476 911
+        L 485 911
+        L 486 910
+        L 531 910
+        L 532 911
+        L 563 911
+        L 564 910
+        L 800 910
+        L 801 911
+        L 812 911
+        L 813 910
+        L 832 910
+        L 833 911
+        L 883 910
+        L 886 911
+        L 896 909
+        L 908 902
+        L 913 897
+        L 924 881
+        L 971 821
+        L 972 811
+        L 967 805
+        L 964 804
+        L 625 804
+        L 624 803
+        Z
+      "/>
+
+    </g>
+  </g>
+
+</svg>

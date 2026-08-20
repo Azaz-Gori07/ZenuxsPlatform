@@ -50,12 +50,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
           onClick={() => {
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
           }}
-          className="flex items-center space-x-2.5 group cursor-pointer shrink-0"
+          className="flex items-center space-x-3.5 group cursor-pointer shrink-0"
         >
-          <div className="w-8 h-8 rounded-lg bg-ember flex items-center justify-center font-display font-bold text-white shadow-md shadow-ember/20 transition-transform group-hover:scale-105">
-            <span className="font-mono text-sm font-black">Z</span>
-          </div>
-          <span className="font-display font-bold text-base tracking-tight text-white group-hover:text-ember transition-colors">
+          <img src="/logo-nav.svg" alt="Zenuxs Logo" className="w-7 h-6 object-contain group-hover:scale-105 transition-transform" />
+          <span className="font-display font-bold text-base tracking-tight text-white group-hover:text-ember transition-colors -ml-2.5">
             ZENUXS
           </span>
         </Link>

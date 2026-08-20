@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from 'react';
+import React, { useLayoutEffect, useEffect, useRef } from 'react';
 import { Chapter01Opening } from './chapters/Chapter01Opening';
 import { Chapter02Problem } from './chapters/Chapter02Problem';
 import { Chapter03Principle } from './chapters/Chapter03Principle';
@@ -36,33 +36,37 @@ const SECTIONS = [
 ];
 
 export const HomePage: React.FC = () => {
-  // Ensure page starts at Chapter 01 (Hero) on reload or mount
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useLayoutEffect(() => {
     if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+      window.history.scrollRestoration = 'auto';
     }
-    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    // Secondary scroll reset after DOM paint
+    // Scroll reset after mount
     const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 50);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="relative w-full snap-y snap-mandatory">
+    <div
+      ref={containerRef}
+      className="relative w-full snap-y snap-mandatory"
+      style={{ overscrollBehavior: 'contain' }}
+    >
       {SECTIONS.map(({ Component, z }, idx) => (
         <section
           key={z}
           id={idx === 0 ? 'hero-chapter' : `chapter-${idx}`}
-          className="h-[100svh] min-h-[100svh] w-full snap-start snap-always overflow-hidden chapter-snap-section"
+          className="w-full snap-start snap-always chapter-snap-section"
           style={{
-            zIndex: z,
             position: idx === 0 ? 'relative' : 'sticky',
             top: idx === 0 ? undefined : 0,
+            zIndex: z,
           }}
         >
           <Component />
