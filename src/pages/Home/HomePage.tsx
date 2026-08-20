@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useEffect, useRef, useState, useCallback } from 'react';
 import { Chapter01Opening } from './chapters/Chapter01Opening';
 import { Chapter02Problem } from './chapters/Chapter02Problem';
 import { Chapter03Principle } from './chapters/Chapter03Principle';
@@ -37,6 +37,7 @@ const SECTIONS = [
 
 export const HomePage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [sectionHeights, setSectionHeights] = useState<Record<number, number>>({});
 
   useLayoutEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -52,6 +53,35 @@ export const HomePage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Measure each section's content height on mount
+  useLayoutEffect(() => {
+    const viewportHeight = window.innerHeight;
+    const heights: Record<number, number> = {};
+
+    const observeSections = () => {
+      const sections = containerRef.current?.querySelectorAll('section');
+      if (!sections) return;
+
+      sections.forEach((section, idx) => {
+        const rect = section.getBoundingClientRect();
+        // Height is viewport height + any overflow beyond
+        heights[idx] = rect.height;
+      });
+      setSectionHeights(heights);
+    };
+
+    observeSections();
+    window.addEventListener('resize', observeSections);
+    return () => window.removeEventListener('resize', observeSections);
+  }, [containerRef]);
+
+  // Determine which sections should use sticky positioning
+  const shouldUseSticky = useCallback((idx: number): boolean => {
+    const height = sectionHeights[idx];
+    if (height === undefined) return true; // default to sticky if unmeasured
+    return height <= window.innerHeight + 20; // 20px tolerance
+  }, [sectionHeights]);
+
   return (
     <div
       ref={containerRef}
@@ -63,8 +93,8 @@ export const HomePage: React.FC = () => {
           id={idx === 0 ? 'hero-chapter' : `chapter-${idx}`}
           className="w-full min-h-[100vh] max-h-auto chapter-snap-section"
           style={{
-            position: idx === 0 ? 'relative' : 'sticky',
-            top: idx === 0 ? undefined : 0,
+            position: idx === 0 ? 'relative' : shouldUseSticky(idx) ? 'sticky' : 'relative',
+            top: idx === 0 ? undefined : shouldUseSticky(idx) ? 0 : undefined,
             zIndex: z,
           }}
         >
