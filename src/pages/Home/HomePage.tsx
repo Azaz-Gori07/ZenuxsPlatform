@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect, useRef, useState, useCallback } from 'react';
+import React, { useRef } from 'react';
 import { Chapter01Opening } from './chapters/Chapter01Opening';
 import { Chapter02Problem } from './chapters/Chapter02Problem';
 import { Chapter03Principle } from './chapters/Chapter03Principle';
@@ -37,72 +37,15 @@ const SECTIONS = [
 
 export const HomePage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [sectionHeights, setSectionHeights] = useState<Record<number, number>>({});
-  const [baseline, setBaseline] = useState(0);
-
-  useLayoutEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'auto';
-    }
-  }, []);
-
-  useEffect(() => {
-    // Scroll reset after mount
-    const timer = setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Measure each section's content height on mount
-  useLayoutEffect(() => {
-    const observeSections = () => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      // Only direct children — chapters contain their own nested <section>
-      const sections = Array.from(container.children) as HTMLElement[];
-      if (sections.length === 0) return;
-
-      // Hero is exactly 100vh — use it as the true viewport baseline
-      // (avoids window.innerHeight mismatch with CSS 100vh on mobile)
-      const heroHeight = sections[0].getBoundingClientRect().height;
-
-      const heights: Record<number, number> = {};
-      sections.forEach((section, idx) => {
-        heights[idx] = section.getBoundingClientRect().height;
-      });
-
-      setBaseline(heroHeight);
-      setSectionHeights(heights);
-    };
-
-    observeSections();
-    window.addEventListener('resize', observeSections);
-    return () => window.removeEventListener('resize', observeSections);
-  }, []);
-
-  // Determine which sections should use sticky positioning
-  const shouldUseSticky = useCallback((idx: number): boolean => {
-    if (baseline === 0) return true; // default to sticky until measured
-    const height = sectionHeights[idx];
-    if (height === undefined) return true;
-    return height <= baseline + 20; // 20px tolerance
-  }, [sectionHeights, baseline]);
-
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full"
-    >
+    <div ref={containerRef} className="relative w-full">
       {SECTIONS.map(({ Component, z }, idx) => (
         <section
           key={z}
           id={idx === 0 ? 'hero-chapter' : `chapter-${idx}`}
-          className="w-full min-h-[100vh] max-h-auto chapter-snap-section"
+          className="w-full"
           style={{
-            position: idx === 0 ? 'relative' : shouldUseSticky(idx) ? 'sticky' : 'relative',
-            top: idx === 0 ? undefined : shouldUseSticky(idx) ? 0 : undefined,
+            position: idx === 0 ? 'relative' : 'relative',
             zIndex: z,
           }}
         >
