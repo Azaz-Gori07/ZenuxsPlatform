@@ -4,7 +4,7 @@ import { Shield, Key, Users, Lock, ArrowRight } from 'lucide-react';
 
 export const Chapter14Console: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[100svh] bg-carbon flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-carbon flex items-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(103,152,255,0.05),transparent)]" />
         <div className="absolute inset-0 technical-grid opacity-20" />

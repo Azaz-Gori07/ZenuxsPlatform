@@ -5,7 +5,7 @@ import { GithubIcon } from '../../../components/ui/Icons';
 
 export const Chapter11Bridge: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[100svh] bg-graphite flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-graphite flex items-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_30%_50%,rgba(103,152,255,0.06),transparent)]" />
         <div className="absolute inset-0 technical-grid opacity-15" />

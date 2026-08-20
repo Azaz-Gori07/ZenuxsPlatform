@@ -4,7 +4,7 @@ import { ArrowRight, Rocket } from 'lucide-react';
 
 export const Chapter16Final: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[100svh] bg-carbon flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-carbon flex items-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,rgba(218,92,44,0.04),transparent)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_40%_at_30%_70%,rgba(103,152,255,0.03),transparent)]" />

@@ -40,7 +40,7 @@ export const Chapter01Opening: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-[100vh] flex items-center overflow-hidden"
+      className="relative w-full h-[100vh] flex items-center"
     >
       {/* Tornado — full-width first layer, nudged right */}
       <div className="absolute inset-0 pointer-events-none translate-x-1/6" aria-hidden="true">

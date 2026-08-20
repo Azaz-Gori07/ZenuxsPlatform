@@ -5,7 +5,7 @@ import { GithubIcon } from '../../../components/ui/Icons';
 
 export const Chapter04Identity: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[100svh] bg-void flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-void flex items-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-ember/5 to-transparent" />
         <div className="absolute inset-0 technical-grid opacity-20" />

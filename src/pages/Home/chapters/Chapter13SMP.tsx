@@ -5,7 +5,7 @@ import { GithubIcon } from '../../../components/ui/Icons';
 
 export const Chapter13SMP: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[100svh] bg-graphite flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-graphite flex items-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_60%_40%,rgba(218,92,44,0.05),transparent)]" />
         <div className="absolute inset-0 technical-dots opacity-20" />
