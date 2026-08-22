@@ -12,6 +12,7 @@ import { TermsPage } from './pages/Legal/TermsPage';
 import { PrivacyPolicyPage } from './pages/Legal/PrivacyPage';
 import { AIPage } from './pages/AI/AIPage';
 import ProductDetailPage from './pages/Products/ProductDetailPage';
+import { GroupChatsPage } from './pages/DatasetCollection/GroupChatsPage';
 
 export const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ export const App: React.FC = () => {
           <Route path="/ai" element={<AIPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/dataset-collection/group-chats" element={<GroupChatsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppShell>
